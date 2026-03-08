@@ -5,7 +5,7 @@ S  Y  N  T  H  .  0  1
 ```
 Virtual analog subtractive synthesizer VST3 plugin built with JUCE
 
-![CodingSounds Synth Screenshot](assets/screenshot.png)
+![CodingSounds Synth Screenshot](assets/screenshot.jpg)
 
 ---
 
