@@ -249,17 +249,6 @@ Synth.01/
 
 ---
 
-## Compatibility
-
-| DAW | Status |
-|-----|--------|
-| FL Studio | Primary target |
-| Ableton Live | VST3 supported |
-| Cubase | VST3 supported |
-| Reaper | VST3 supported |
-| Standalone | Built-in audio |
-
----
 
 ## Credits
 
