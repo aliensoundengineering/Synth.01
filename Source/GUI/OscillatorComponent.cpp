@@ -19,6 +19,7 @@ OscillatorComponent::OscillatorComponent(const juce::String& name)
     // Gain slider
     setupSlider(gainSlider, gainLabel, "Gain");
     gainSlider.setRange(0.0, 1.0, 0.01);
+    gainSlider.setSkewFactorFromMidPoint(0.25);
     gainSlider.setValue(0.5);
 
     // Detune slider

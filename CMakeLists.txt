@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 
-project(CodingSoundsSynth VERSION 0.0.1)
+project(Synth.01 VERSION 0.0.1)
 
 # Add JUCE folder
 option(JUCE_BUILD_EXAMPLES "Build JUCE examples" OFF)
@@ -10,10 +10,10 @@ add_subdirectory(JUCE)
 # Generate VST3 plugin for FL Studio
 juce_add_plugin(
     ${PROJECT_NAME}
-    PLUGIN_MANUFACTURER_CODE Gslf
+    PLUGIN_MANUFACTURER_CODE AlienSoundEngineering
     PLUGIN_CODE Csyn
     FORMATS VST3 Standalone    
-    PRODUCT_NAME "CodingSounds Synth"
+    PRODUCT_NAME "AlienSoundEngineering Synth.01"
     IS_SYNTH TRUE                
     NEEDS_MIDI_INPUT TRUE        
     NEEDS_MIDI_OUTPUT FALSE
@@ -63,6 +63,7 @@ target_sources(${PROJECT_NAME} PRIVATE
 
 # Setup compiler
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+target_compile_options(${PROJECT_NAME} PRIVATE "/utf-8")
 
 # Definizioni per evitare conflitti VST2/VST3
 target_compile_definitions(${PROJECT_NAME} PUBLIC

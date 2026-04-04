@@ -27,6 +27,7 @@ EffectsComponent::EffectsComponent() {
     // Drive sliders
     setupSlider(driveAmountSlider, driveAmountLabel, "Drive");
     driveAmountSlider.setRange(0.0, 1.0, 0.01);
+    driveAmountSlider.setSkewFactorFromMidPoint(0.25);
     driveAmountSlider.setValue(0.0);
 
     setupSlider(driveMixSlider, driveMixLabel, "Mix");
@@ -35,6 +36,7 @@ EffectsComponent::EffectsComponent() {
 
     setupSlider(driveOutputSlider, driveOutputLabel, "Output");
     driveOutputSlider.setRange(0.0, 1.0, 0.01);
+    driveOutputSlider.setSkewFactorFromMidPoint(0.25);
     driveOutputSlider.setValue(0.7);
 
     // Delay sliders
@@ -65,7 +67,7 @@ EffectsComponent::EffectsComponent() {
     reverbWetSlider.setRange(0.0, 1.0, 0.01);
     reverbWetSlider.setValue(0.3);
 
-    setupSlider(reverbDrySlider, reverbDryLabel, "Dry");
+    setupSlider(reverbDrySlider, reverbDryLabel, "Dry"); 
     reverbDrySlider.setRange(0.0, 1.0, 0.01);
     reverbDrySlider.setValue(0.7);
 

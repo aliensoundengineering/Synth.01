@@ -18,8 +18,7 @@ MainComponent::MainComponent()
     deviceManager.addAudioCallback(&audioSourcePlayer);
     
     // Title
-    titleLabel.setText(":#/ GSLF CodingSounds Synth", juce::dontSendNotification);
-    titleLabel.setFont(juce::Font(24.0f, juce::Font::bold));
+    titleLabel.setText(juce::String(juce::CharPointer_UTF8("───  ::ασε~  ─   Alien Sound Engineering")), juce::dontSendNotification);    titleLabel.setFont(juce::Font(24.0f, juce::Font::bold));
     titleLabel.setColour(juce::Label::textColourId, CustomLookAndFeel::accentColor);
     titleLabel.setJustificationType(juce::Justification::centred);
     addAndMakeVisible(titleLabel);
@@ -67,6 +66,7 @@ MainComponent::MainComponent()
     masterGainSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     masterGainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 15);
     masterGainSlider.setRange(0.0, 1.0, 0.01);
+    masterGainSlider.setSkewFactorFromMidPoint(0.25);
     masterGainSlider.setValue(0.7);
     masterGainSlider.onValueChange = [this] { updateSynthParameters(); };
     addAndMakeVisible(masterGainSlider);
