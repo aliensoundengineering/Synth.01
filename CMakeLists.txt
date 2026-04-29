@@ -7,15 +7,24 @@ option(JUCE_BUILD_EXAMPLES "Build JUCE examples" OFF)
 option(JUCE_BUILD_EXTRAS "Build JUCE extras" OFF)
 add_subdirectory(JUCE)
 
-# Generate VST3 plugin for FL Studio
+# Plugin formats: VST3 + Standalone everywhere; AU only on Apple platforms.
+set(SYNTH01_FORMATS VST3 Standalone)
+if(APPLE)
+    list(APPEND SYNTH01_FORMATS AU)
+endif()
+
 juce_add_plugin(
     ${PROJECT_NAME}
     PLUGIN_MANUFACTURER_CODE AlienSoundEngineering
     PLUGIN_CODE Csyn
-    FORMATS VST3 Standalone    
+    FORMATS ${SYNTH01_FORMATS}
+    COMPANY_NAME "AlienSoundEngineering"
+    COMPANY_WEBSITE "https://aliensoundengineering.com"
+    COMPANY_EMAIL "ase@aliensoundengineering.com"
+    BUNDLE_ID com.aliensoundengineering.synth01
     PRODUCT_NAME "AlienSoundEngineering Synth.01"
-    IS_SYNTH TRUE                
-    NEEDS_MIDI_INPUT TRUE        
+    IS_SYNTH TRUE
+    NEEDS_MIDI_INPUT TRUE
     NEEDS_MIDI_OUTPUT FALSE
     IS_MIDI_EFFECT FALSE
     EDITOR_WANTS_KEYBOARD_FOCUS TRUE
@@ -63,7 +72,9 @@ target_sources(${PROJECT_NAME} PRIVATE
 
 # Setup compiler
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
-target_compile_options(${PROJECT_NAME} PRIVATE "/utf-8")
+if(MSVC)
+    target_compile_options(${PROJECT_NAME} PRIVATE "/utf-8")
+endif()
 
 # Definizioni per evitare conflitti VST2/VST3
 target_compile_definitions(${PROJECT_NAME} PUBLIC

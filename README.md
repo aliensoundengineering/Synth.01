@@ -178,35 +178,66 @@ Virtual analog subtractive synthesizer VST3 plugin built with JUCE
 
 ---
 
-## Build Instructions
+## Install (Pre-built Binaries)
+
+Download the latest release for your platform from the [Releases](https://github.com/aliensoundengineering/Synth.01/releases) page:
+
+| Platform | Archive | Contains |
+|---|---|---|
+| Windows x64 | `Synth.01-vX.Y.Z-windows-x64.zip` | VST3, Standalone (.exe) |
+| Windows ARM64 | `Synth.01-vX.Y.Z-windows-arm64.zip` | VST3, Standalone (.exe) |
+| macOS (Intel + Apple Silicon) | `Synth.01-vX.Y.Z-macos-universal.zip` | VST3, AU, Standalone (.app) |
+| Linux (Debian / Ubuntu) | `Synth.01-vX.Y.Z-linux-x64.tar.gz` | VST3, Standalone |
+
+Copy the plugin bundle into your system's plugin folder:
+
+| Format | Windows | macOS | Linux |
+|---|---|---|---|
+| VST3 | `C:\Program Files\Common Files\VST3\` | `~/Library/Audio/Plug-Ins/VST3/` | `~/.vst3/` |
+| AU | — | `~/Library/Audio/Plug-Ins/Components/` | — |
+
+Then rescan plugins in your DAW.
+
+### Unsigned binary notes
+
+Releases are not code-signed.
+
+- **Windows:** SmartScreen warns the first time you run the standalone — click **More info → Run anyway**.
+- **macOS:** Gatekeeper blocks unsigned bundles. Either right-click the `.app` / `.vst3` / `.component` → **Open** the first time, or strip the quarantine attribute:
+  ```bash
+  xattr -dr com.apple.quarantine "AlienSoundEngineering Synth.01.vst3"
+  xattr -dr com.apple.quarantine "AlienSoundEngineering Synth.01.component"
+  xattr -dr com.apple.quarantine "AlienSoundEngineering Synth.01.app"
+  ```
+
+---
+
+## Build from Source
 
 ### Requirements
 
 - **CMake** 3.22+
-- **C++20** compatible compiler
-- **JUCE** framework (included as submodule)
+- **C++20** compatible compiler (MSVC 19.30+, Clang 13+, GCC 11+)
+- **JUCE** framework (included as a git submodule)
+- Linux additionally needs: `libasound2-dev libjack-jackd2-dev ladspa-sdk libcurl4-openssl-dev libfreetype-dev libfontconfig1-dev libx11-dev libxcomposite-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev libwebkit2gtk-4.1-dev libglu1-mesa-dev mesa-common-dev`
 
 ### Building
 
 ```bash
-# Clone the repository
-git clone --recursive https://github.com/your-username/CodingSounds-Synth.git
-cd CodingSounds-Synth
+git clone --recursive https://github.com/aliensoundengineering/Synth.01.git
+cd Synth.01
 
-# Create build directory
-mkdir build && cd build
-
-# Configure
-cmake ..
-
-# Build
-cmake --build . --config Release
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release --parallel
 ```
 
 ### Output
 
-- **VST3 Plugin**: `build/CodingSoundsSynth_artefacts/Release/VST3/`
-- **Standalone App**: `build/CodingSoundsSynth_artefacts/Release/Standalone/`
+Artefacts are written under `build/Synth.01_artefacts/Release/`:
+
+- **VST3:** `VST3/AlienSoundEngineering Synth.01.vst3/`
+- **AU (macOS only):** `AU/AlienSoundEngineering Synth.01.component/`
+- **Standalone:** `Standalone/AlienSoundEngineering Synth.01.{exe,app,}`
 
 ---
 
