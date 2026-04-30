@@ -79,6 +79,8 @@ endif()
 # Definizioni per evitare conflitti VST2/VST3
 target_compile_definitions(${PROJECT_NAME} PUBLIC
     JUCE_VST3_CAN_REPLACE_VST2=0
+    JUCE_WEB_BROWSER=0
+    JUCE_USE_CURL=0
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
